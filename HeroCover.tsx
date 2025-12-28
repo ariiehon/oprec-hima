@@ -1,8 +1,7 @@
 import { ArrowRight, Users } from 'lucide-react';
 
-// === PERBAIKAN DI SINI ===
-// Hapus import figma:asset
-const logoAdyanala = "https://cdn-icons-png.flaticon.com/512/9312/9312234.png"; // Placeholder Logo Adyanala
+// === PERBAIKAN: Link gambar diganti URL biasa agar tidak Error saat Build ===
+const logoAdyanala = "https://cdn-icons-png.flaticon.com/512/9312/9312234.png"; 
 
 interface HeroCoverProps {
   onScrollToForm: () => void;
@@ -20,7 +19,7 @@ export function HeroCover({ onScrollToForm }: HeroCoverProps) {
             <img src={logoAdyanala} alt="Logo Kabinet Adyanala" className="w-12 h-12 object-contain" />
           </div>
 
-          {/* Main heading - Elegant serif */}
+          {/* Main heading */}
           <div className="space-y-4 animate-slide-up">
             <h1 
               className="text-6xl md:text-7xl lg:text-8xl text-[#1a1a1a] leading-[1.1] uppercase"
@@ -34,7 +33,7 @@ export function HeroCover({ onScrollToForm }: HeroCoverProps) {
             </h1>
           </div>
 
-          {/* Organization info - Clean sans-serif */}
+          {/* Organization info */}
           <div className="space-y-2 animate-slide-up delay-200">
             <h2 
               className="text-xl md:text-2xl text-[#0D652D]"
@@ -68,7 +67,7 @@ export function HeroCover({ onScrollToForm }: HeroCoverProps) {
             </p>
           </div>
 
-          {/* CTA Buttons - Elegant & Clean */}
+          {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-10 animate-slide-up delay-400">
             <button
               onClick={onScrollToForm}
@@ -89,7 +88,7 @@ export function HeroCover({ onScrollToForm }: HeroCoverProps) {
             </button>
           </div>
 
-          {/* Scroll indicator - Minimal */}
+          {/* Scroll indicator */}
           <div className="pt-16 animate-fade-in delay-500">
             <div className="inline-flex flex-col items-center gap-2 text-[#666]">
               <span 
@@ -104,7 +103,7 @@ export function HeroCover({ onScrollToForm }: HeroCoverProps) {
         </div>
       </div>
 
-      {/* Subtle floating shapes */}
+      {/* Floating shapes */}
       <div className="absolute top-1/4 left-10 w-2 h-2 bg-[#34A853]/20 rounded-full animate-float"></div>
       <div className="absolute top-1/3 right-1/4 w-3 h-3 bg-[#4285F4]/20 rounded-full animate-float delay-1000"></div>
       <div className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-[#A50E0E]/20 rounded-full animate-float delay-500"></div>
