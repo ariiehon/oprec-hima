@@ -1,5 +1,8 @@
 import { ArrowRight, Users } from 'lucide-react';
-import logoAdyanala from 'figma:asset/110d50e02af6a7daf2cafb6a9c87136f7490206c.png';
+
+// === PERBAIKAN DI SINI ===
+// Hapus import figma:asset
+const logoAdyanala = "https://cdn-icons-png.flaticon.com/512/9312/9312234.png"; // Placeholder Logo Adyanala
 
 interface HeroCoverProps {
   onScrollToForm: () => void;
@@ -8,8 +11,6 @@ interface HeroCoverProps {
 export function HeroCover({ onScrollToForm }: HeroCoverProps) {
   return (
     <div className="relative w-full min-h-screen overflow-hidden bg-white">
-      {/* Subtle decorative elements - removed */}
-      
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-20">
         <div className="max-w-5xl w-full text-center space-y-10">
