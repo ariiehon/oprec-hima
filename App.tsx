@@ -5,21 +5,23 @@ import { TimelineItem } from './components/TimelineItem';
 import { ApplicationForm } from './components/ApplicationForm';
 import { AdminDashboard } from './components/AdminDashboard';
 import { StatusChecker } from './components/StatusChecker';
-import { Users, Target, Calendar, FileText, Mail, Shield, Edit, Instagram, Lock, ArrowRight } from 'lucide-react';
+import { Target, Calendar, FileText, Mail, Shield, Edit, Instagram, Lock, ArrowRight } from 'lucide-react';
 import { Search } from 'lucide-react';
-import imgLogoHimaK3 from "figma:asset/72ca1154a423cf568ddfc402adf60ff80194fcf5.png";
+
+// === PERBAIKAN DI SINI ===
+// Hapus import figma:asset, ganti dengan URL atau path lokal
+// Kalau punya file logonya, taruh di folder 'public' dan panggil '/logo.png'
+const imgLogoHimaK3 = "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"; // Placeholder Logo K3
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('about');
   const [showAdmin, setShowAdmin] = useState(false);
   const [showStatusChecker, setShowStatusChecker] = useState(false);
   
-  // STATE BARU: Untuk keamanan Admin
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
   const [adminPasswordInput, setAdminPasswordInput] = useState('');
   const [loginError, setLoginError] = useState('');
 
-  // === GANTI PASSWORD ADMIN DI SINI ===
   const ADMIN_PASSWORD = "admin123"; 
 
   const handleAdminLogin = (e: React.FormEvent) => {
@@ -33,9 +35,7 @@ export default function App() {
     }
   };
 
-  // LOGIKA TAMPILAN ADMIN
   if (showAdmin) {
-    // Kalo belum login, munculin form password dulu
     if (!isAdminAuthenticated) {
       return (
         <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
@@ -87,7 +87,6 @@ export default function App() {
       );
     }
 
-    // Kalo sudah login, baru munculin dashboard aslinya
     return (
       <div>
         <div className="bg-white shadow-md p-4 flex justify-between items-center">
@@ -99,7 +98,7 @@ export default function App() {
           </button>
           <button
             onClick={() => {
-              setIsAdminAuthenticated(false); // Logout
+              setIsAdminAuthenticated(false);
               setShowAdmin(false);
             }}
             className="text-red-500 hover:text-red-700 text-sm font-medium"
@@ -216,17 +215,6 @@ export default function App() {
     }
   ];
 
-  // Flat list of all prokers with their department
-  const allProkers = divisions.flatMap(dept => 
-    dept.requirements.map(proker => ({
-      prokerName: proker,
-      department: dept.title
-    }))
-  );
-
-  // Non-Sekben departments for special case
-  const nonSekbenDepartments = divisions.filter(d => d.id !== 1);
-
   const timeline = [
     { date: '05-10 Januari 2026', title: 'Pendaftaran', description: 'Periode pendaftaran open recruitment dibuka' },
     { date: '11-14 Januari 2026', title: 'Wawancara', description: 'Wawancara dengan Departemen Pilihan' },
@@ -235,11 +223,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#FCF5E8]">
-      {/* Navigation - Sticky from the start */}
       <nav className="sticky top-0 bg-white shadow-md z-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between py-3 md:py-4 gap-4">
-            {/* Logo - Responsive sizing */}
             <div className="flex items-center gap-3">
               <img 
                 src={imgLogoHimaK3} 
@@ -248,7 +234,6 @@ export default function App() {
               />
             </div>
 
-            {/* Navigation Menu - Responsive: Icon only on mobile, Icon + Text on desktop */}
             <div className="flex gap-1 md:gap-2">
               {[
                 { id: 'about', label: 'Guidebook', icon: FileText },
@@ -279,10 +264,8 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Hero Section with Cover */}
       <HeroCover onScrollToForm={() => scrollToSection('form')} />
 
-      {/* About Section */}
       <section id="about" className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-center mb-4 bg-gradient-to-r from-[#174EA6] to-[#4285F4] bg-clip-text text-transparent font-bold text-[32px] font-[Poppins]">
@@ -293,24 +276,20 @@ export default function App() {
           </p>
           
           <div className="max-w-4xl mx-auto">
-            {/* Guidebook Card */}
             <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl p-8 md:p-12 border border-gray-100">
               <div className="flex flex-col md:flex-row items-center gap-8">
-                {/* Icon/Illustration */}
                 <div className="flex-shrink-0">
                   <div className="w-32 h-32 bg-gradient-to-br from-[#0D652D] to-[#34A853] rounded-2xl flex items-center justify-center shadow-lg">
                     <FileText className="w-16 h-16 text-white" />
                   </div>
                 </div>
                 
-                {/* Content */}
                 <div className="flex-1 text-center md:text-left">
                   <h3 className="mb-3 text-[#0D652D]">📖 Guidebook Rekrutmen</h3>
                   <p className="text-gray-600 mb-6">
                     Akses guidebook yang berisi informasi detail tentang visi misi, departemen, dan proker dari HIMA K3 Kabinet Adyanala
                   </p>
                   
-                  {/* CTA Button */}
                   <a
                     href="https://drive.google.com/drive/folders/1eGqwTforfjs4ZGsF9nWCzLw1_qS9IxV6?usp=sharing"
                     target="_blank"
@@ -336,7 +315,6 @@ export default function App() {
                 </div>
               </div>
               
-              {/* Additional Info */}
               <div className="mt-8 pt-6 border-t border-gray-200">
                 <div className="grid md:grid-cols-3 gap-4 text-center">
                   <div className="bg-blue-50 rounded-lg p-4">
@@ -358,7 +336,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Divisions Section */}
       <section id="divisions" className="py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-center mb-4 bg-gradient-to-r from-[#174EA6] to-[#4285F4] bg-clip-text text-transparent font-bold text-[32px] font-[Poppins]">
@@ -381,7 +358,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Requirements Section */}
       <section className="py-20 px-4">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-center mb-12 bg-gradient-to-r from-[#174EA6] to-[#4285F4] bg-clip-text text-transparent text-[32px] font-[Poppins] font-bold">
@@ -432,7 +408,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Timeline Section */}
       <section id="timeline" className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-center mb-12 bg-gradient-to-r from-[#174EA6] to-[#4285F4] bg-clip-text text-transparent text-[32px] font-[Poppins] font-bold">
@@ -451,7 +426,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Application Form Section */}
        <section id="form" className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-center mb-4 bg-gradient-to-r from-[#174EA6] to-[#4285F4] bg-clip-text text-transparent font-bold text-[32px] font-[Poppins]">
@@ -464,7 +438,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="py-20 px-4 bg-gradient-to-br from-[#0D652D] to-[#34A853] text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="mb-4">Hubungi Kami</h2>
@@ -481,7 +454,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-[#383432] text-white py-8 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-4">
@@ -493,7 +465,6 @@ export default function App() {
             </p>
           </div>
           
-          {/* Admin & Status Checker Buttons */}
           <div className="flex items-center justify-center gap-4 pt-4 border-t border-white/10">
             <button
               onClick={() => setShowStatusChecker(true)}
